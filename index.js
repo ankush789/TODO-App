@@ -3,6 +3,10 @@ const express = require('express');
 const port = 9000;
 const app = express();
 
+//Requiring mongoose config
+const db = require('./config/mongoose');
+
+
 //Adding parser to decode form data from string to an JSON object
 app.use(express.urlencoded());
 
