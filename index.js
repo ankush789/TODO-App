@@ -1,9 +1,14 @@
+
 const express = require('express');
 const port = 9000;
 const app = express();
 
 //Setting Express Router
 app.use('/', require('./routes'));
+
+
+//serving statis files like css,js or images
+app.use(express.static('assets'));
 
 //installing ejs and setting view engine
 app.set('view engine','ejs');
