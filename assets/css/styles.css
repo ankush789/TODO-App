@@ -1,3 +1,20 @@
 .color {
     color: red;
 }
+.add-button{
+    width: 85%;
+}
+.delete-button{
+    width:100%;
+}
+#todo-list{
+    list-style: none;
+}
+#todo-list li:nth-child(2n+1){
+    background: aliceblue;
+}
+#todo-list-item{
+    display: flex;
+    justify-content: space-between;
+    
+}
