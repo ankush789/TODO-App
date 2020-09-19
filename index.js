@@ -3,6 +3,9 @@ const express = require('express');
 const port = 9000;
 const app = express();
 
+//Adding parser to decode form data from string to an JSON object
+app.use(express.urlencoded());
+
 //Setting Express Router
 app.use('/', require('./routes'));
 
