@@ -2,7 +2,7 @@
     color: red;
 }
 .add-button{
-    width: 85%;
+    width: 100%;
 }
 .delete-button{
     width:100%;
@@ -17,4 +17,9 @@
     display: flex;
     justify-content: space-between;
     
+}
+.abc{
+    background: antiquewhite;
+    border: 2px solid #e1d6d6;
+    margin-top: 45px;
 }

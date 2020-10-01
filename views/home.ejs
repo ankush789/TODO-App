@@ -9,77 +9,88 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/0906b767ab.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="offset-md-3 col-md-6">
+            <div class="offset-md-3 col-md-6 abc">
                 <h2 class="text-center">TODO List</h2>
-                <form action="/create-task" method="post" class="mb-lg-5">
+                <form action="/create-task" method="post" class="mb-3">
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input type="text" class="form-control" id="description">
+                        <input type="text" class="form-control" name="description" id="description">
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="option">Category</label>
-                            <select class="form-control" id="option">
-                                <option>Category</option>
-                                <option>Personal</option>
-                                <option>Work</option>
-                                <option>Home </option>
+                            <select class="form-control" id="option" name="category">
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                                <option value="Home">Home</option>
+                                <option value="Cleaning">Cleaning</option>
+                                <option value="School">School</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="date" class="form-control" id="date">
+                                <input type="date" name="date" class="form-control" id="date">
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="offset-md-2 col-md-4">
-                            <button class="btn btn-dark add-button"><i class="fa fa-plus"></i> ADD TASK</button>
+                        <div>
+                            <button type="submit" class="btn btn-dark add-button">
+                            <i class="fa fa-plus"></i> ADD TASK</button>
                         </div>
-                        <div class="col-md-4">
-                            <button class="btn btn-danger delete-button"> <i class="fa fa-trash" aria-hidden="true"></i> DELETE TASKS</button>
-                        </div>
-                    </div>
                 </form>
+            <form action="delete-task" method="post" >
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-danger delete-button">
+                    <i class="fa fa-trash" aria-hidden="true"></i> DELETE TASKS</button>
+                </div>
 
                 <ul id="todo-list" class="list-group list-group-flush">
-                    <li id="todo-list-item" class=" list-group-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label ml-3" for="defaultCheck1">
-                                Default checkbox
-                            </label>
-                            <div class="ml-3"><i class="fa fa-calendar"></i> May 2, 2020</div>
-                        </div> 
-                        <div>
-                            <h4 class="btn btn-warning">Work</h4>
-                        </div> 
-                    </li>
+                    <% for(let i of todo_list) { %>
                     <li id="todo-list-item" class="list-group-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <input class="form-check-input" type="checkbox" name="<%= i._id %>" value="<%= i._id %>" id="defaultCheck1">
                             <label class="form-check-label ml-3" for="defaultCheck1">
-                                Default checkbox
+                                <%= i.description %>
                             </label>
-                            <div class="ml-3"><i class="fa fa-calendar"></i> May 2, 2020</div>
+                            <div class="ml-3"><i class="fa fa-calendar"></i> <%= i.date %></div>
                         </div>
                         <div>
-                            <h4 class="btn btn-danger">Home</h4>
+                            <% if(i.category=="Personal"){ %>
+                            <h4 class="btn btn-warning"><%= i.category %> </h4>
+                            <% } else if(i.category == "Work"){ %>
+                            <h4 class="btn btn-primary"><%= i.category %> </h4>
+                            <% } else if(i.category == "Home"){ %>
+                            <h4 class="btn btn-success"><%= i.category %> </h4>
+                            <% } else if(i.category == "Cleaning"){ %>
+                            <h4 class="btn btn-danger"><%= i.category %> </h4>
+                            <% } else if(i.category == "School"){ %>
+                            <h4 class="btn btn-dark"><%= i.category %> </h4>
+                            <% } else if(i.category == "Other"){ %>
+                            <h4 class="btn btn-secondary"><%= i.category %> </h4>
+                            <% } %>
                         </div>
                     </li>
+                    <% } %>
                 </ul>
+            </form>
+            
                 
 
             </div>
         </div>
     </div>
 
-    <script type="text/javascript" src="/js/index.js"></script>
+    
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </body>
